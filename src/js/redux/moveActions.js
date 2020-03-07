@@ -5,26 +5,30 @@ import {
   UNDO_MOVE
 } from './actionTypes';
 
-export function initiateMove() {
+export function initiateMove(index) {
   return {
-    type: INITIATE_MOVE
+    type: INITIATE_MOVE,
+    index
   };
 }
 
-export function confirmMove() {
+export function confirmMove(index) {
   return {
-    type: CONFIRM_MOVE
+    type: CONFIRM_MOVE,
+    index
   };
 }
 
-export function cancelMove() {
+export function cancelMove(index) {
   return {
-    type: CANCEL_MOVE
+    type: CANCEL_MOVE,
+    index
   };
 }
 
-export function undoMove() {
+export function undoMove(index) {
   return {
-    type: UNDO_MOVE
+    type: UNDO_MOVE,
+    index
   };
 }

@@ -1,11 +1,6 @@
 import { SWAP, FINISH } from './actionTypes';
 
-const initialState = {
-  activeP: 'one',
-  finish: false
-};
-
-const gameStateReducer = (state = initialState, action) => {
+const gameStateReducer = (state = [], action) => {
   switch (action.type) {
     case SWAP:
       return {

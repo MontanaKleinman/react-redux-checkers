@@ -1,9 +1,3 @@
-//CHECKER ACTIONS
-
-export const GRAB = 'GRAB';
-
-export const RELEASE = 'RELEASE';
-
 //MOVE ACTIONS
 
 export const INITIATE_MOVE = 'INITIATE_MOVE';

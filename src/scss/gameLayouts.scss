@@ -14,44 +14,48 @@
   }
 }
 
-.squareColorOne {
+.white {
   display: grid;
   place-items: center;
-  background-color: rgb(24, 111, 139);
-  width: 100%;
-  height: 100%;
-}
-
-.squareColorTwo {
-  display: grid;
-  place-items: center;
-  background-color: rgb(185, 29, 29);
-  width: 100%;
-  height: 100%;
-}
-
-.checkerOne {
-  background-color: black;
-  width: 75%;
-  height: 75%;
-  border-radius: 50%;
-
-  &:hover {
-    background-color: rgb(150, 150, 150);
-  }
-}
-
-.checkerTwo {
   background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.black {
+  display: grid;
+  place-items: center;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+
+  &.alive {
+    background-color: red;
+  }
+}
+
+.blue {
+  background-color: blue;
   width: 75%;
   height: 75%;
   border-radius: 50%;
 
   &:hover {
-    background-color: rgb(150, 150, 150);
+    border: solid 5px yellow;
   }
 }
 
-.liftedPiece {
-  border: solid 5px rgb(1, 255, 43);
+.yellow {
+  background-color: yellow;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+
+  &:hover {
+    border: solid 5px blue;
+  }
+}
+
+.target {
+  background-color: green;
 }
