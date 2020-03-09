@@ -4,12 +4,11 @@ import { initiateMove } from './redux/moveActions';
 
 function CheckerPiece(props) {
   const piece = useSelector(state => state.move.piece);
-  const dispatch = useDispatch();
 
   return (
     <div
+      id={`checker${props.index}`}
       className={`${piece[props.index].color}`}
-      onClick={() => dispatch(initiateMove(props.index))}
     ></div>
   );
 }

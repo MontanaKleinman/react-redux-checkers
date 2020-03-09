@@ -3,14 +3,15 @@
   background-color: blue;
   grid-template-rows: repeat(8, 1fr);
   grid-template-columns: repeat(8, 1fr);
+  border: solid 1px black;
 
   @media only screen and (orientation: portrait) {
-    width: 95vw;
-    height: 95vw;
+    width: 70vw;
+    height: 70vw;
   }
   @media only screen and (orientation: landscape) {
-    width: 95vh;
-    height: 95vh;
+    width: 70vh;
+    height: 70vh;
   }
 }
 
@@ -56,6 +57,56 @@
   }
 }
 
-.target {
+.valid {
   background-color: green;
+}
+
+.gameBox {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  @media only screen and (orientation: portrait) {
+    grid-template-rows: repeat(3, auto);
+  }
+  @media only screen and (orientation: landscape) {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+.infoBox {
+  display: grid;
+  place-items: center;
+  width: 80%;
+  height: 80%;
+  border: solid 1px black;
+  @media only screen and (orientation: portrait) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  @media only screen and (orientation: landscape) {
+    grid-template-rows: repeat(5, 1fr);
+  }
+}
+
+.infoSection {
+  display: grid;
+  place-items: center;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.turnOn {
+  opacity: 100%;
+  transition: 1s ease;
+  color: rgb(255, 0, 0);
+}
+
+.turnOff {
+  opacity: 0%;
+  transition: 1s ease;
 }

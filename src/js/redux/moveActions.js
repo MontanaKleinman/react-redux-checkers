@@ -1,6 +1,7 @@
 import {
   INITIATE_MOVE,
   CONFIRM_MOVE,
+  FINISH_MOVE,
   CANCEL_MOVE,
   UNDO_MOVE
 } from './actionTypes';
@@ -15,6 +16,13 @@ export function initiateMove(index) {
 export function confirmMove(index) {
   return {
     type: CONFIRM_MOVE,
+    index
+  };
+}
+
+export function finishMove(index) {
+  return {
+    type: FINISH_MOVE,
     index
   };
 }
