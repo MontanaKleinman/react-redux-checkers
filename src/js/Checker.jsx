@@ -6,10 +6,13 @@ function CheckerPiece(props) {
   const piece = useSelector(state => state.move.piece);
 
   return (
-    <div
-      id={`checker${props.index}`}
-      className={`${piece[props.index].color}`}
-    ></div>
+    <div id={`checker${props.index}`} className={`${piece[props.index].color}`}>
+      {piece[props.index].color !== ''
+        ? piece[props.index].status === 'king'
+          ? 'K'
+          : 'P'
+        : ''}
+    </div>
   );
 }
 

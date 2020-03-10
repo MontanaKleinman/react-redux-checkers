@@ -7,7 +7,7 @@ import {
 } from './actionTypes';
 
 const initialState = {
-  active: '',
+  phase: 'start',
   square: [...Array(64)].map((e, i) => {
     return i;
   }),
@@ -96,13 +96,15 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     i === action.index + 9 &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     i === action.index + 18 &&
                     state.piece[i - 9].color !== 'blue' &&
-                    state.piece[i - 9].color !== ''
+                    state.piece[i - 9].color !== '' &&
+                    state.piece[i].color === ''
                   ) {
                     return 'valid';
                   } else {
@@ -119,13 +121,15 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     (i === action.index + 7 || i === action.index + 9) &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     i === action.index + 18 &&
                     state.piece[i - 9].color !== 'blue' &&
-                    state.piece[i - 9].color !== ''
+                    state.piece[i - 9].color !== '' &&
+                    state.piece[i].color === ''
                   ) {
                     return 'valid';
                   } else {
@@ -142,13 +146,15 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     (i === action.index + 7 || i === action.index + 9) &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     i === action.index + 14 &&
                     state.piece[i - 7].color !== 'blue' &&
-                    state.piece[i - 7].color !== ''
+                    state.piece[i - 7].color !== '' &&
+                    state.piece[i].color === ''
                   ) {
                     return 'valid';
                   } else {
@@ -166,13 +172,15 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     i === action.index + 7 &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     i === action.index + 14 &&
                     state.piece[i - 7].color !== 'blue' &&
-                    state.piece[i - 7].color !== ''
+                    state.piece[i - 7].color !== '' &&
+                    state.piece[i].color === ''
                   ) {
                     return 'valid';
                   } else {
@@ -185,16 +193,19 @@ const moveReducer = (state = initialState, action) => {
                 if (state.next[action.index].includes(i) && i > action.index) {
                   if (
                     (i === action.index + 7 || i === action.index + 9) &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     (i === action.index + 14 &&
                       state.piece[i - 7].color !== 'blue' &&
-                      state.piece[i - 7].color !== '') ||
+                      state.piece[i - 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index + 18 &&
                       state.piece[i - 9].color !== 'blue' &&
-                      state.piece[i - 9].color !== '')
+                      state.piece[i - 9].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -217,16 +228,19 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     (i === action.index - 9 || i === action.index + 9) &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     (i === action.index - 18 &&
                       state.piece[i + 9].color !== 'blue' &&
-                      state.piece[i + 9].color !== '') ||
+                      state.piece[i + 9].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index + 18 &&
                       state.piece[i - 9].color !== 'blue' &&
-                      state.piece[i - 9].color !== '')
+                      state.piece[i - 9].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -246,15 +260,18 @@ const moveReducer = (state = initialState, action) => {
                       i === action.index + 7 ||
                       i === action.index + 9 ||
                       i === action.index - 9) &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     ((i === action.index - 18 || i === action.index + 18) &&
                       state.piece[i - 9].color !== 'blue' &&
-                      state.piece[i - 9].color !== '') ||
+                      state.piece[i - 9].color !== '' &&
+                      state.piece[i].color === '') ||
                     (state.piece[i + 9].color !== 'blue' &&
-                      state.piece[i + 9].color !== '')
+                      state.piece[i + 9].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -274,15 +291,18 @@ const moveReducer = (state = initialState, action) => {
                       i === action.index + 7 ||
                       i === action.index + 9 ||
                       i === action.index - 9) &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     ((i === action.index - 14 || i === action.index + 14) &&
                       state.piece[i - 7].color !== 'blue' &&
-                      state.piece[i - 7].color !== '') ||
+                      state.piece[i - 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (state.piece[i + 7].color !== 'blue' &&
-                      state.piece[i + 7].color !== '')
+                      state.piece[i + 7].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -301,16 +321,19 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     (i === action.index - 7 || i === action.index + 7) &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     (i === action.index - 14 &&
                       state.piece[i + 7].color !== 'blue' &&
-                      state.piece[i + 7].color !== '') ||
+                      state.piece[i + 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index + 14 &&
                       state.piece[i - 7].color !== 'blue' &&
-                      state.piece[i - 7].color !== '')
+                      state.piece[i - 7].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -326,22 +349,27 @@ const moveReducer = (state = initialState, action) => {
                       i === action.index + 7 ||
                       i === action.index - 9 ||
                       i === action.index + 9) &&
-                    state.piece[i].color !== 'blue'
+                    state.piece[i].color !== 'blue' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     (i === action.index - 14 &&
                       state.piece[i + 7].color !== 'blue' &&
-                      state.piece[i + 7].color !== '') ||
+                      state.piece[i + 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index + 14 &&
                       state.piece[i - 7].color !== 'blue' &&
-                      state.piece[i - 7].color !== '') ||
+                      state.piece[i - 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index - 18 &&
                       state.piece[i + 9].color !== 'blue' &&
-                      state.piece[i + 9].color !== '') ||
+                      state.piece[i + 9].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index + 18 &&
                       state.piece[i - 9].color !== 'blue' &&
-                      state.piece[i - 9].color !== '')
+                      state.piece[i - 9].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -366,13 +394,15 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     i === action.index - 7 &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     i === action.index - 18 &&
                     state.piece[i + 9].color !== 'yellow' &&
-                    state.piece[i + 9].color !== ''
+                    state.piece[i + 9].color !== '' &&
+                    state.piece[i].color === ''
                   ) {
                     return 'valid';
                   } else {
@@ -389,13 +419,15 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     (i === action.index - 7 || i === action.index - 9) &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     i === action.index - 14 &&
                     state.piece[i + 7].color !== 'yellow' &&
-                    state.piece[i + 7].color !== ''
+                    state.piece[i + 7].color !== '' &&
+                    state.piece[i].color === ''
                   ) {
                     return 'valid';
                   } else {
@@ -412,13 +444,15 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     (i === action.index - 7 || i === action.index - 9) &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     i === action.index - 18 &&
                     state.piece[i + 9].color !== 'yellow' &&
-                    state.piece[i + 9].color !== ''
+                    state.piece[i + 9].color !== '' &&
+                    state.piece[i].color === ''
                   ) {
                     return 'valid';
                   } else {
@@ -436,13 +470,15 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     i === action.index - 9 &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     i === action.index - 18 &&
                     state.piece[i + 9].color !== 'yellow' &&
-                    state.piece[i + 9].color !== ''
+                    state.piece[i + 9].color !== '' &&
+                    state.piece[i].color === ''
                   ) {
                     return 'valid';
                   } else {
@@ -455,16 +491,19 @@ const moveReducer = (state = initialState, action) => {
                 if (state.next[action.index].includes(i) && i < action.index) {
                   if (
                     (i === action.index - 7 || i === action.index - 9) &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     (i === action.index - 14 &&
                       state.piece[i + 7].color !== 'yellow' &&
-                      state.piece[i + 7].color !== '') ||
+                      state.piece[i + 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index - 18 &&
                       state.piece[i + 9].color !== 'yellow' &&
-                      state.piece[i + 9].color !== '')
+                      state.piece[i + 9].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -487,16 +526,20 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     (i === action.index - 7 || i === action.index + 7) &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue' &&
+                    state.piece[i].color === ''
                   ) {
                     return 'valid';
                   } else if (
                     (i === action.index - 14 &&
                       state.piece[i + 7].color !== 'yellow' &&
-                      state.piece[i + 7].color !== '') ||
+                      state.piece[i + 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index + 14 &&
                       state.piece[i - 7].color !== 'yellow' &&
-                      state.piece[i - 7].color !== '')
+                      state.piece[i - 7].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -516,15 +559,18 @@ const moveReducer = (state = initialState, action) => {
                       i === action.index + 7 ||
                       i === action.index + 9 ||
                       i === action.index - 9) &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     ((i === action.index - 14 || i === action.index + 14) &&
                       state.piece[i - 7].color !== 'yellow' &&
-                      state.piece[i - 7].color !== '') ||
+                      state.piece[i - 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (state.piece[i + 7].color !== 'yellow' &&
-                      state.piece[i + 7].color !== '')
+                      state.piece[i + 7].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -544,15 +590,18 @@ const moveReducer = (state = initialState, action) => {
                       i === action.index + 7 ||
                       i === action.index + 9 ||
                       i === action.index - 9) &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     ((i === action.index - 18 || i === action.index + 18) &&
                       state.piece[i - 7].color !== 'yellow' &&
-                      state.piece[i - 7].color !== '') ||
+                      state.piece[i - 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (state.piece[i + 7].color !== 'yellow' &&
-                      state.piece[i + 7].color !== '')
+                      state.piece[i + 7].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -571,16 +620,19 @@ const moveReducer = (state = initialState, action) => {
                 ) {
                   if (
                     (i === action.index - 9 || i === action.index + 9) &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     (i === action.index - 18 &&
                       state.piece[i + 9].color !== 'yellow' &&
-                      state.piece[i + 9].color !== '') ||
+                      state.piece[i + 9].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index + 18 &&
                       state.piece[i - 9].color !== 'yellow' &&
-                      state.piece[i - 9].color !== '')
+                      state.piece[i - 9].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -596,22 +648,27 @@ const moveReducer = (state = initialState, action) => {
                       i === action.index + 7 ||
                       i === action.index - 9 ||
                       i === action.index + 9) &&
-                    state.piece[i].color !== 'yellow'
+                    state.piece[i].color !== 'yellow' &&
+                    state.phase !== 'continue'
                   ) {
                     return 'valid';
                   } else if (
                     (i === action.index - 14 &&
                       state.piece[i + 7].color !== 'yellow' &&
-                      state.piece[i + 7].color !== '') ||
+                      state.piece[i + 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index + 14 &&
                       state.piece[i - 7].color !== 'yellow' &&
-                      state.piece[i - 7].color !== '') ||
+                      state.piece[i - 7].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index - 18 &&
                       state.piece[i + 9].color !== 'yellow' &&
-                      state.piece[i + 9].color !== '') ||
+                      state.piece[i + 9].color !== '' &&
+                      state.piece[i].color === '') ||
                     (i === action.index + 18 &&
                       state.piece[i - 9].color !== 'yellow' &&
-                      state.piece[i - 9].color !== '')
+                      state.piece[i - 9].color !== '' &&
+                      state.piece[i].color === '')
                   ) {
                     return 'valid';
                   } else {
@@ -627,16 +684,40 @@ const moveReducer = (state = initialState, action) => {
       return {
         ...state,
         piece: state.piece.map((e, i) => {
-          console.log(state.next[state.currentSquare]);
           if (
             i === action.index &&
-            state.next[state.currentSquare].includes(i) &&
-            state.target[action.index] === 'valid'
+            state.next[state.currentSquare].includes(i)
+          ) {
+            if (
+              (i === action.index && state.row[action.index] === 0) ||
+              state.row[action.index] === 7
+            ) {
+              return {
+                color: state.piece[state.currentSquare].color,
+                status: 'king',
+                active: 'still'
+              };
+            } else {
+              return {
+                color: state.piece[state.currentSquare].color,
+                status: 'pawn',
+                active: 'still'
+              };
+            }
+          } else if (
+            (i === action.index + 7 &&
+              action.index === state.currentSquare - 14) ||
+            (i === action.index - 7 &&
+              action.index === state.currentSquare + 14) ||
+            (i === action.index + 9 &&
+              action.index === state.currentSquare - 18) ||
+            (i === action.index - 9 &&
+              action.index === state.currentSquare + 18)
           ) {
             return {
-              color: state.piece[state.currentSquare].color,
-              status: 'pawn',
-              active: 'still'
+              color: '',
+              status: '',
+              active: ''
             };
           } else if (i === state.currentSquare) {
             return {
@@ -647,6 +728,16 @@ const moveReducer = (state = initialState, action) => {
           } else {
             return { color: e.color, status: e.status, active: 'still' };
           }
+        }),
+        phase:
+          action.index === state.currentSquare - 14 ||
+          action.index === state.currentSquare + 14 ||
+          action.index === state.currentSquare - 18 ||
+          action.index === state.currentSquare + 18
+            ? 'continue'
+            : 'transfer',
+        target: [...Array(64)].map((e, i) => {
+          return 'invalid';
         })
       };
     case FINISH_MOVE:
@@ -657,7 +748,9 @@ const moveReducer = (state = initialState, action) => {
           ? state.piece.includes('yellow')
             ? false
             : 'oneWin'
-          : 'twoWin'
+          : 'twoWin',
+        phase: 'start',
+        currentSquare: action.index
       };
     case CANCEL_MOVE:
       return {};

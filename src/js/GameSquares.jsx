@@ -6,28 +6,34 @@ import { initiateMove, confirmMove } from './redux/moveActions';
 function GameSquares(props) {
   const bColor = useSelector(state => state.move.bColor);
   const piece = useSelector(state => state.move.piece);
-  const currentSquare = useSelector(state => state.move.currentSquare);
+  const phase = useSelector(state => state.move.phase);
   const target = useSelector(state => state.move.target);
   const player = useSelector(state => state.move.player);
   const dispatch = useDispatch();
 
   const selectMove = e => {
-    if (player === 'one' && piece[props.index].color === 'blue') {
+    if (
+      player === 'one' &&
+      piece[props.index].color === 'blue' &&
+      phase !== 'transfer'
+    ) {
       if (e.target.id === `checker${props.index}`) {
         dispatch(initiateMove(props.index));
       }
-    } else {
-      e.preventDefault();
-    }
-    if (player === 'two' && piece[props.index].color === 'yellow') {
+    } else if (
+      player === 'two' &&
+      piece[props.index].color === 'yellow' &&
+      phase !== 'transfer'
+    ) {
       if (e.target.id === `checker${props.index}`) {
         dispatch(initiateMove(props.index));
       }
-    } else {
+    } else if (e.target.id === `square${props.index}` && phase !== 'transfer') {
+      if (target[props.index] === 'valid') {
+        dispatch(confirmMove(props.index));
+      }
+    } else if (e.target) {
       e.preventDefault();
-    }
-    if (e.target.id === `square${props.index}`) {
-      dispatch(confirmMove(props.index));
     }
   };
 
